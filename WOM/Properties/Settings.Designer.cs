@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WOMui.Properties
+namespace WOM.Properties
 {
 
 

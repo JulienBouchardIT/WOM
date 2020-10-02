@@ -1,7 +1,7 @@
-﻿<Application x:Class="WOMui.App"
+﻿<Application x:Class="WOM.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:WOMui"
+             xmlns:local="clr-namespace:WOM"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          
