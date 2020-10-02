@@ -1,0 +1,15 @@
+D:\Documents\GitHub\WOMui\WOMui\WOMui\bin\Debug\WOMui.exe.config
+D:\Documents\GitHub\WOMui\WOMui\WOMui\bin\Debug\WOMui.exe
+D:\Documents\GitHub\WOMui\WOMui\WOMui\bin\Debug\WOMui.pdb
+D:\Documents\GitHub\WOMui\WOMui\WOMui\obj\Debug\WOMui.csprojAssemblyReference.cache
+D:\Documents\GitHub\WOMui\WOMui\WOMui\obj\Debug\MainWindow.g.cs
+D:\Documents\GitHub\WOMui\WOMui\WOMui\obj\Debug\App.g.cs
+D:\Documents\GitHub\WOMui\WOMui\WOMui\obj\Debug\WOMui_MarkupCompile.cache
+D:\Documents\GitHub\WOMui\WOMui\WOMui\obj\Debug\WOMui_MarkupCompile.lref
+D:\Documents\GitHub\WOMui\WOMui\WOMui\obj\Debug\MainWindow.baml
+D:\Documents\GitHub\WOMui\WOMui\WOMui\obj\Debug\WOMui.g.resources
+D:\Documents\GitHub\WOMui\WOMui\WOMui\obj\Debug\WOMui.Properties.Resources.resources
+D:\Documents\GitHub\WOMui\WOMui\WOMui\obj\Debug\WOMui.csproj.GenerateResource.cache
+D:\Documents\GitHub\WOMui\WOMui\WOMui\obj\Debug\WOMui.csproj.CoreCompileInputs.cache
+D:\Documents\GitHub\WOMui\WOMui\WOMui\obj\Debug\WOMui.exe
+D:\Documents\GitHub\WOMui\WOMui\WOMui\obj\Debug\WOMui.pdb
