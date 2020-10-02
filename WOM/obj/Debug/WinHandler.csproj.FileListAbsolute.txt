@@ -1,0 +1,7 @@
+C:\Users\Julien\Documents\GitHub\PowerDesktop\src\Handlers\WinHandler\WinHandler\obj\Debug\WinHandler.csprojAssemblyReference.cache
+C:\Users\Julien\Documents\GitHub\PowerDesktop\src\Handlers\WinHandler\WinHandler\obj\Debug\WinHandler.csproj.CoreCompileInputs.cache
+C:\Users\Julien\Documents\GitHub\PowerDesktop\src\Handlers\WinHandler\WinHandler\bin\Debug\WinHandler.exe.config
+C:\Users\Julien\Documents\GitHub\PowerDesktop\src\Handlers\WinHandler\WinHandler\bin\Debug\WinHandler.exe
+C:\Users\Julien\Documents\GitHub\PowerDesktop\src\Handlers\WinHandler\WinHandler\bin\Debug\WinHandler.pdb
+C:\Users\Julien\Documents\GitHub\PowerDesktop\src\Handlers\WinHandler\WinHandler\obj\Debug\WinHandler.exe
+C:\Users\Julien\Documents\GitHub\PowerDesktop\src\Handlers\WinHandler\WinHandler\obj\Debug\WinHandler.pdb
