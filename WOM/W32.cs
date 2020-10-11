@@ -120,5 +120,10 @@ namespace WOM
         public static extern bool CloseWindow(IntPtr hWnd);
 
         public const int WM_CLOSE = 0x0010;
+
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool IsWindowVisible(IntPtr hWnd);
     }
 }

@@ -19,13 +19,12 @@ namespace WOM
     /// </summary>
     public partial class MainWindow : Window
     {
+        private const string WIKI_URL = "https://github.com/JulienBouchardIT/WOM/blob/master/README.md#how-to-use-it";
+        private const string DESKTOP_ICONS = "DESKTOP ICONS";
 
-        private IList<WindowInterface> windows;
-        private string WIKI_URL = "https://github.com/JulienBouchardIT/WOM/blob/master/README.md#how-to-use-it";
 
         public MainWindow()
         {
-            windows = DesktopHandler.GetAllWindows();
             InitializeComponent();
             Init_ListBox();
             Init_Tasktray();
@@ -79,20 +78,18 @@ namespace WOM
                 return FindVisualParent<T>(parentObject);
             }
 
-            private IList<WindowInterface> _items = new ObservableCollection<WindowInterface>();
+            private IList<WindowInterface> windows = new ObservableCollection<WindowInterface>();
 
             private void Init_ListBox()
             {
-                _items.Add(new WindowInterface("DESKTOP ICONS"));
+                windows.Add(new WindowInterface(0,"DESKTOP ICONS","",true));
 
-                foreach(WindowInterface window in windows)
+                foreach(WindowInterface window in DesktopHandler.GetAllWindows())
                 {
-                    _items.Add(new WindowInterface(window.name));
+                    windows.Add(window);
                 }
                 
-
-                //listBox.DisplayMemberPath = "Name";
-                listBox.ItemsSource = _items;
+                listBox.ItemsSource = windows;
 
                 listBox.PreviewMouseMove += ListBox_PreviewMouseMove;
 
@@ -149,20 +146,20 @@ namespace WOM
             {
                 if (sourceIndex < targetIndex)
                 {
-                    _items.Insert(targetIndex + 1, source);
-                    _items.RemoveAt(sourceIndex);
+                    windows.Insert(targetIndex + 1, source);
+                    windows.RemoveAt(sourceIndex);
                 }
                 else
                 {
                     int removeIndex = sourceIndex + 1;
-                    if (_items.Count + 1 > removeIndex)
+                    if (windows.Count + 1 > removeIndex)
                     {
-                        _items.Insert(targetIndex, source);
-                        _items.RemoveAt(removeIndex);
+                        windows.Insert(targetIndex, source);
+                        windows.RemoveAt(removeIndex);
                     }
                 }
             }
-            #endregion
+            #endregion  
 
         public void CloseButton(object sender, RoutedEventArgs e)
         {
@@ -182,7 +179,20 @@ namespace WOM
 
         public void Apply(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine(_items);
+            IntPtr wallpaperHandler = DesktopHandler.GetDesktopHandler();
+
+            foreach (WindowInterface item in listBox.Items)
+            {
+                //Console.WriteLine(item.name);
+                if(item.id==0)
+                {
+                    break;
+                }
+
+                W32.SetParent(item.handler, wallpaperHandler);
+            }
+
+
             this.Visibility = Visibility.Hidden;
             tasktrayProcess.Visible = true;
         }

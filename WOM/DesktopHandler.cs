@@ -25,20 +25,22 @@ namespace WOM
             this.name = process.ProcessName;
             this.title = process.MainWindowTitle;
             this.fix = false;
+            this.handler = process.MainWindowHandle;
         }
 
-        public WindowInterface(String name)
+        public WindowInterface(int id, String name, String title, bool fix)
         {
-            this.id = 0;
+            this.id = id;
             this.name = name;
-            this.title = null;
-            this.fix = true;
+            this.title = title;
+            this.fix = fix;
         }
 
         public int id { get; }
         public string name { get; }
         public string title { get; }
         public bool fix { get; set; }
+        public IntPtr handler { get; }
 
     }
 
@@ -50,7 +52,8 @@ namespace WOM
             List<WindowInterface> windows = new List<WindowInterface>();
             foreach (Process process in Process.GetProcesses())
             {
-                if (!String.IsNullOrEmpty(process.MainWindowTitle))
+                if (!String.IsNullOrEmpty(process.MainWindowTitle) && 
+                    W32.IsWindowVisible(process.MainWindowHandle))
                     windows.Add(new WindowInterface(process));
             }
 
