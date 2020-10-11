@@ -32,9 +32,9 @@
                 </Image.Source>
             </Image>
             <Label Grid.Column="1" Margin="0,4,0,0">Window Order Manager 0.0</Label>
-            <Button Grid.Column="2" BorderThickness="0" Background="White">A</Button>
-            <Button Grid.Column="3" BorderThickness="0" Background="White">?</Button>
-            <Button Grid.Column="4" BorderThickness="0" Background="White">X</Button>
+            <Button Grid.Column="2" BorderThickness="0" Background="White" Click="Actualize">A</Button>
+            <Button Grid.Column="3" BorderThickness="0" Background="White" Click="OpenWiki">?</Button>
+            <Button Grid.Column="4" BorderThickness="0" Background="White" Click="CloseButton">X</Button>
         </Grid>
 
         <ListBox x:Name="listBox" Grid.Row="1" BorderThickness="0" 

@@ -21,6 +21,7 @@ namespace WOM
     {
 
         private IList<WindowInterface> windows;
+        private string WIKI_URL = "https://github.com/JulienBouchardIT/WOM/blob/master/README.md#how-to-use-it";
 
         public MainWindow()
         {
@@ -163,6 +164,21 @@ namespace WOM
             }
             #endregion
 
+        public void CloseButton(object sender, RoutedEventArgs e)
+        {
+            this.Visibility = Visibility.Hidden;
+            tasktrayProcess.Visible = true;
+        }
+
+        public void OpenWiki(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(WIKI_URL);
+        }
+
+        public void Actualize(object sender, RoutedEventArgs e)
+        {
+            //todo
+        }
 
         public void Apply(object sender, RoutedEventArgs e)
         {
