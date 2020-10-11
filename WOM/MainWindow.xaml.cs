@@ -9,17 +9,10 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Diagnostics;
 
 namespace WOM
 {
-    public class Item
-    {
-        public string Name { get; set; }
-        public Item(string name)
-        {
-            this.Name = name;
-        }
-    }
 
     /// <summary>
     /// Logique d'interaction pour MainWindow.xaml
@@ -27,14 +20,15 @@ namespace WOM
     public partial class MainWindow : Window
     {
 
+        private IList<WindowInterface> windows;
+
         public MainWindow()
         {
+            windows = DesktopHandler.GetAllWindows();
             InitializeComponent();
             Init_ListBox();
             Init_Tasktray();
-
-
-
+            this.Topmost = true;
         }
 
         #region Tasktray
@@ -78,18 +72,19 @@ namespace WOM
                 return FindVisualParent<T>(parentObject);
             }
 
-            private IList<Item> _items = new ObservableCollection<Item>();
+            private IList<WindowInterface> _items = new ObservableCollection<WindowInterface>();
 
             private void Init_ListBox()
             {
-                _items.Add(new Item("1"));
-                _items.Add(new Item("2"));
-                _items.Add(new Item("3"));
-                _items.Add(new Item("Desktop icons"));
-                _items.Add(new Item("5"));
-                _items.Add(new Item("6"));
+                _items.Add(new WindowInterface("DESKTOP ICONS"));
 
-                listBox.DisplayMemberPath = "Name";
+                foreach(WindowInterface window in windows)
+                {
+                    _items.Add(new WindowInterface(window.name));
+                }
+                
+
+                //listBox.DisplayMemberPath = "Name";
                 listBox.ItemsSource = _items;
 
                 listBox.PreviewMouseMove += ListBox_PreviewMouseMove;
@@ -133,8 +128,8 @@ namespace WOM
             {
                 if (sender is ListBoxItem)
                 {
-                    var source = e.Data.GetData(typeof(Item)) as Item;
-                    var target = ((ListBoxItem)(sender)).DataContext as Item;
+                    var source = e.Data.GetData(typeof(WindowInterface)) as WindowInterface;
+                    var target = ((ListBoxItem)(sender)).DataContext as WindowInterface;
 
                     int sourceIndex = listBox.Items.IndexOf(source);
                     int targetIndex = listBox.Items.IndexOf(target);
@@ -143,7 +138,7 @@ namespace WOM
                 }
             }
 
-            private void Move(Item source, int sourceIndex, int targetIndex)
+            private void Move(WindowInterface source, int sourceIndex, int targetIndex)
             {
                 if (sourceIndex < targetIndex)
                 {
@@ -170,7 +165,7 @@ namespace WOM
             string title = "WOM - Add window";
             var result = MessageBox.Show(message, title);
 
-            
+
 
             this.Visibility = Visibility.Visible;
 
@@ -180,6 +175,7 @@ namespace WOM
         {
             Console.WriteLine(_items);
             this.Visibility = Visibility.Hidden;
+            tasktrayProcess.Visible = true;
         }
 
 

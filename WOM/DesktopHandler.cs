@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,8 +17,46 @@ using System.Windows;
 
 namespace WOM
 {
+    class WindowInterface
+    {
+        public WindowInterface(Process process)
+        {
+            this.id = process.Id;
+            this.name = process.ProcessName;
+            this.title = process.MainWindowTitle;
+            this.fix = false;
+        }
+
+        public WindowInterface(String name)
+        {
+            this.id = 0;
+            this.name = name;
+            this.title = null;
+            this.fix = true;
+        }
+
+        public int id { get; }
+        public string name { get; }
+        public string title { get; }
+        public bool fix { get; set; }
+
+    }
+
     class DesktopHandler
     {
+
+        public static IList<WindowInterface> GetAllWindows()
+        {
+            List<WindowInterface> windows = new List<WindowInterface>();
+            foreach (Process process in Process.GetProcesses())
+            {
+                if (!String.IsNullOrEmpty(process.MainWindowTitle))
+                    windows.Add(new WindowInterface(process));
+            }
+
+            return windows;
+        }
+
         public static void KillAll()
         {
             IntPtr hwnd = GetDesktopHandler();
