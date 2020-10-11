@@ -172,7 +172,7 @@ namespace WOM
 
         public void OpenWiki(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start(WIKI_URL);
+            Process.Start(WIKI_URL);
         }
 
         public void Actualize(object sender, RoutedEventArgs e)
