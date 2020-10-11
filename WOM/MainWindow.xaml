@@ -9,17 +9,35 @@
         Height="500" Width="300" ResizeMode="NoResize"
         Icon="layer.ico"
         Closing="Window_Closing"
+        AllowsTransparency="True" WindowStyle="None"
         >
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
             <RowDefinition />
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-        
-        <ListBox x:Name="listBox" Grid.Row="0" BorderThickness="0" 
+
+        <Grid Grid.Row="0" MouseDown="Window_Drag">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <Image Width="25" Margin="2">
+                <Image.Source>
+                    <BitmapImage DecodePixelWidth="300" UriSource="layer.ico" />
+                </Image.Source>
+            </Image>
+            <Label Grid.Column="1" Margin="0,4,0,0">Window Order Manager 0.0</Label>
+            <Button Grid.Column="2" BorderThickness="0" Background="White">A</Button>
+            <Button Grid.Column="3" BorderThickness="0" Background="White">?</Button>
+            <Button Grid.Column="4" BorderThickness="0" Background="White">X</Button>
+        </Grid>
+
+        <ListBox x:Name="listBox" Grid.Row="1" BorderThickness="0" 
             ItemsSource="{Binding}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -28,6 +46,6 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Button Grid.Row="1" Width="300" Height="40" Click="Apply" ClickMode="Press" Foreground="White" FontSize="20" Background="#15B2FF"  FontWeight="Bold">Apply</Button>
+        <Button Grid.Row="2" Width="300" Height="40" BorderThickness="0" Click="Apply" ClickMode="Press" Foreground="White" FontSize="20" Background="#15B2FF" FontWeight="Bold">Apply</Button>
     </Grid>
 </Window>

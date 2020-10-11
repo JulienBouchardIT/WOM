@@ -31,6 +31,12 @@ namespace WOM
             this.Topmost = true;
         }
 
+        private void Window_Drag(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+        }
+
         #region Tasktray
         private System.Windows.Forms.NotifyIcon tasktrayProcess;
         private void Init_Tasktray()
@@ -157,19 +163,6 @@ namespace WOM
             }
             #endregion
 
-        public void AddWindow(object sender, RoutedEventArgs e)
-        {
-            this.Visibility = Visibility.Hidden;
-
-            string message = "Click on the desired window";
-            string title = "WOM - Add window";
-            var result = MessageBox.Show(message, title);
-
-
-
-            this.Visibility = Visibility.Visible;
-
-        }
 
         public void Apply(object sender, RoutedEventArgs e)
         {
