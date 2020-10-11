@@ -30,7 +30,7 @@ namespace WOM
             return opt+desc;
         }
 
-        static void Main(string[] args)
+        /*static void Main(string[] args)
         {
             #if DEBUG
             //args = new string[] {"--killAll"};
@@ -83,6 +83,6 @@ namespace WOM
 
                 uint resp = W32.GetLastError();
             }
-        }
+        }*/
     }
 }
