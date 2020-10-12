@@ -78,14 +78,14 @@ namespace WOM
                 return FindVisualParent<T>(parentObject);
             }
 
-            private IList<WindowInterface> windows = new ObservableCollection<WindowInterface>();
+            private IList<WinInterface> windows = new ObservableCollection<WinInterface>();
 
             private void Init_ListBox()
             {
                 windows.Clear();
-                windows.Add(new WindowInterface(0, "DESKTOP ICONS", "", true));
+                windows.Add(new WinInterface());
 
-                foreach(WindowInterface window in DesktopHandler.GetAllWindows())
+                foreach(WinInterface window in DesktopHandler.GetAllWindows())
                 {
                     windows.Add(window);
                 }
@@ -134,8 +134,8 @@ namespace WOM
             {
                 if (sender is ListBoxItem)
                 {
-                    var source = e.Data.GetData(typeof(WindowInterface)) as WindowInterface;
-                    var target = ((ListBoxItem)(sender)).DataContext as WindowInterface;
+                    var source = e.Data.GetData(typeof(WinInterface)) as WinInterface;
+                    var target = ((ListBoxItem)(sender)).DataContext as WinInterface;
 
                     int sourceIndex = listBox.Items.IndexOf(source);
                     int targetIndex = listBox.Items.IndexOf(target);
@@ -144,7 +144,7 @@ namespace WOM
                 }
             }
 
-            private void Move(WindowInterface source, int sourceIndex, int targetIndex)
+            private void Move(WinInterface source, int sourceIndex, int targetIndex)
             {
                 if (sourceIndex < targetIndex)
                 {
@@ -183,7 +183,7 @@ namespace WOM
         {
             IntPtr wallpaperHandler = DesktopHandler.GetDesktopHandler();
 
-            foreach (WindowInterface item in listBox.Items)
+            foreach (WinInterface item in listBox.Items)
             {
                 //Console.WriteLine(item.name);
                 if(item.id==0)

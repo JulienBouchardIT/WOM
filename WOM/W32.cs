@@ -51,7 +51,7 @@ namespace WOM
         public static extern IntPtr SendMessageTimeout(IntPtr windowHandle, uint Msg, IntPtr wParam, IntPtr lParam, SendMessageTimeoutFlags flags, uint timeout, out IntPtr result);
 
         [DllImport("User32.dll", SetLastError = true)]
-        public static extern Int32 SetForegroundWindow(int hWnd);
+        public static extern Int32 SetForegroundWindow(IntPtr hWnd);
 
         [DllImport("User32.dll", SetLastError = true)]
         public static extern Boolean EnumChildWindows(int hWndParent, Delegate lpEnumFunc, int lParam);
