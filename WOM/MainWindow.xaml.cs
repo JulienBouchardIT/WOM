@@ -21,7 +21,7 @@ namespace WOM
     {
         private const string WIKI_URL = "https://github.com/JulienBouchardIT/WOM/blob/master/README.md#how-to-use-it";
         private const string DESKTOP_ICONS = "DESKTOP ICONS";
-
+        private WindowOrderManager wom = WindowOrderManager.getWOM();
 
         public MainWindow()
         {
@@ -78,19 +78,10 @@ namespace WOM
                 return FindVisualParent<T>(parentObject);
             }
 
-            private IList<WinInterface> windows = new ObservableCollection<WinInterface>();
-
             private void Init_ListBox()
             {
-                windows.Clear();
-                windows.Add(new WinInterface());
-
-                foreach(WinInterface window in DesktopHandler.GetAllWindows())
-                {
-                    windows.Add(window);
-                }
                 
-                listBox.ItemsSource = windows;
+                listBox.ItemsSource = wom.listWinItf;
 
                 listBox.PreviewMouseMove += ListBox_PreviewMouseMove;
 
@@ -148,16 +139,16 @@ namespace WOM
             {
                 if (sourceIndex < targetIndex)
                 {
-                    windows.Insert(targetIndex + 1, source);
-                    windows.RemoveAt(sourceIndex);
+                    wom.listWinItf.Insert(targetIndex + 1, source);
+                    wom.listWinItf.RemoveAt(sourceIndex);
                 }
                 else
                 {
                     int removeIndex = sourceIndex + 1;
-                    if (windows.Count + 1 > removeIndex)
+                    if (wom.listWinItf.Count + 1 > removeIndex)
                     {
-                        windows.Insert(targetIndex, source);
-                        windows.RemoveAt(removeIndex);
+                        wom.listWinItf.Insert(targetIndex, source);
+                        wom.listWinItf.RemoveAt(removeIndex);
                     }
                 }
             }
@@ -181,29 +172,20 @@ namespace WOM
 
         public void Apply(object sender, RoutedEventArgs e)
         {
-            IntPtr wallpaperHandler = DesktopHandler.GetDesktopHandler();
-
-            foreach (WinInterface item in listBox.Items)
-            {
-                //Console.WriteLine(item.name);
-                if(item.id==0)
-                {
-                    break;
-                }
-                W32.Rect rct;
-
-                Console.WriteLine(W32.GetWindowRect(item.handler, out rct));
-
-                W32.SetParent(item.handler, wallpaperHandler);
-
-                W32.MoveWindow(item.handler, rct.left, rct.top, rct.right - rct.left, rct.bottom - rct.top, true);
-            }
-
+            wom.apply();
 
             this.Visibility = Visibility.Hidden;
             tasktrayProcess.Visible = true;
         }
 
+        public void Reset(object sender, RoutedEventArgs e)
+        {
+            //todo: Ask for confirmation (this will suppress every config and kill any app between desktop and icon)
+        }
 
+        public void Adjust(object sender, RoutedEventArgs e)
+        {
+            //todo
+        }
     }
 }
