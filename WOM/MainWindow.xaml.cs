@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace WOM
 {
@@ -183,7 +184,22 @@ namespace WOM
             //todo: Ask for confirmation (this will suppress every config and kill any app between desktop and icon)
         }
 
-        public void Adjust(object sender, RoutedEventArgs e)
+        public void Top(object sender, RoutedEventArgs e)
+        {
+            //todo
+        }
+
+        public void Scale(object sender, RoutedEventArgs e)
+        {
+            //todo
+        }
+
+        public void Move(object sender, RoutedEventArgs e)
+        {
+            //todo
+        }
+
+        public void Kill(object sender, RoutedEventArgs e)
         {
             //todo
         }

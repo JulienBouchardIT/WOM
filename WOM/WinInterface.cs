@@ -35,6 +35,7 @@ namespace WOM
 
         public void setForeground()
         {
+            Console.WriteLine("setForeground "+this.name);
             W32.SetForegroundWindow(this.handler);
         }
 
