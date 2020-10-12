@@ -190,8 +190,13 @@ namespace WOM
                 {
                     break;
                 }
+                W32.Rect rct;
+
+                Console.WriteLine(W32.GetWindowRect(item.handler, out rct));
 
                 W32.SetParent(item.handler, wallpaperHandler);
+
+                W32.MoveWindow(item.handler, rct.left, rct.top, rct.right - rct.left, rct.bottom - rct.top, true);
             }
 
 
