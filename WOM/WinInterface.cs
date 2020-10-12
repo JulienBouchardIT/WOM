@@ -11,6 +11,7 @@ namespace WOM
     {
         public WinInterface(System.Diagnostics.Process process)
         {
+            this.process = process;
             this.id = process.Id;
             this.name = process.ProcessName;
             this.title = process.MainWindowTitle;
@@ -39,11 +40,18 @@ namespace WOM
             W32.SetForegroundWindow(this.handler);
         }
 
+        public void Kill()
+        {
+            this.process.Kill();
+        }
+
         public bool isIcon { get; }
         public int id { get; }
         public string name { get; }
         public string title { get; }
         public bool fix { get; set; }
         public IntPtr handler { get; }
+
+        private System.Diagnostics.Process process { get; set; }
     }
 }

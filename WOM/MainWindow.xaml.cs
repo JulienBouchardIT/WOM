@@ -65,6 +65,11 @@ namespace WOM
 
         #region Listbox
 
+        private WinInterface GetSelectedItf()
+        {
+            return (listBox.SelectedItem as WinInterface);
+        }
+
         private Point _dragStartPoint;
 
             private T FindVisualParent<T>(DependencyObject child)
@@ -182,16 +187,31 @@ namespace WOM
         public void Reset(object sender, RoutedEventArgs e)
         {
             //todo: Ask for confirmation (this will suppress every config and kill any app between desktop and icon)
+            
         }
 
         public void Top(object sender, RoutedEventArgs e)
         {
-            //todo
+            //todo:make temporary. Hold down button
+            GetSelectedItf().setForeground();
         }
 
         public void Scale(object sender, RoutedEventArgs e)
         {
             //todo
+            if (GetSelectedItf() != null)
+            {
+                string winName = GetSelectedItf().name;
+                this.Visibility = Visibility.Hidden;
+                ScaleOverlay overlay = new ScaleOverlay();
+
+                overlay.ShowDialog();
+
+
+
+                this.Visibility = Visibility.Visible;
+            }
+            //todo show exception
         }
 
         public void Move(object sender, RoutedEventArgs e)
@@ -201,7 +221,8 @@ namespace WOM
 
         public void Kill(object sender, RoutedEventArgs e)
         {
-            //todo
+            GetSelectedItf().Kill();
+            Init_ListBox(); // Actualize
         }
     }
 }
