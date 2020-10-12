@@ -13,12 +13,14 @@ using System.Drawing;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
-
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace WOM
 {
-    class WindowInterface
+    class WindowInterface : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         public WindowInterface(Process process)
         {
             this.id = process.Id;
@@ -26,6 +28,7 @@ namespace WOM
             this.title = process.MainWindowTitle;
             this.fix = false;
             this.handler = process.MainWindowHandle;
+            this.isIcon = true;
         }
 
         public WindowInterface(int id, String name, String title, bool fix)
@@ -34,8 +37,10 @@ namespace WOM
             this.name = name;
             this.title = title;
             this.fix = fix;
+            this.isIcon = false;
         }
 
+        public bool isIcon { get; }
         public int id { get; }
         public string name { get; }
         public string title { get; }
@@ -53,7 +58,8 @@ namespace WOM
             foreach (Process process in Process.GetProcesses())
             {
                 if (!String.IsNullOrEmpty(process.MainWindowTitle) && 
-                    W32.IsWindowVisible(process.MainWindowHandle))
+                    W32.IsWindowVisible(process.MainWindowHandle) &&
+                    !(process.ProcessName == "WOM")) 
                     windows.Add(new WindowInterface(process));
             }
 

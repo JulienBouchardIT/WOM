@@ -82,7 +82,8 @@ namespace WOM
 
             private void Init_ListBox()
             {
-                windows.Add(new WindowInterface(0,"DESKTOP ICONS","",true));
+                windows.Clear();
+                windows.Add(new WindowInterface(0, "DESKTOP ICONS", "", true));
 
                 foreach(WindowInterface window in DesktopHandler.GetAllWindows())
                 {
@@ -104,6 +105,7 @@ namespace WOM
                             ListBoxItem.DropEvent,
                             new DragEventHandler(ListBoxItem_Drop)));
                 listBox.ItemContainerStyle = style;
+                listBox.Items.Refresh();
             }
 
 
@@ -174,7 +176,7 @@ namespace WOM
 
         public void Actualize(object sender, RoutedEventArgs e)
         {
-            //todo
+            Init_ListBox();
         }
 
         public void Apply(object sender, RoutedEventArgs e)

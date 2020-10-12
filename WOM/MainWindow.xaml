@@ -35,7 +35,7 @@
                     </Image.Source>
                 </Image>
                 <Label Grid.Column="1" Margin="0,4,0,0">Window Order Manager 0.0</Label>
-                <Button Grid.Column="2" BorderThickness="0" Background="Transparent" Click="Actualize" Visibility="Hidden">Act.</Button>
+                <Button Grid.Column="2" BorderThickness="0" Background="Transparent" Click="Actualize">Act.</Button>
                 <Button Grid.Column="3" BorderThickness="0" Background="Transparent" Click="OpenWiki">?</Button>
                 <Button Grid.Column="4" BorderThickness="0" Background="Transparent" Click="CloseButton">X
                     <Button.Resources>
@@ -51,7 +51,16 @@
             ItemsSource="{Binding}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding name}"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Background="White" BorderThickness="0" IsEnabled="{Binding isIcon, Mode=OneTime}">T</Button>
+                        <ToggleButton Grid.Column="1" Background="White" BorderThickness="0" IsEnabled="{Binding isIcon, Mode=OneTime}" IsChecked="{Binding fix, Mode=TwoWay}">L</ToggleButton>
+                        <TextBlock Grid.Column="2" Text="{Binding name}"/>
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
