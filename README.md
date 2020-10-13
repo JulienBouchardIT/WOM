@@ -22,7 +22,7 @@ This application allows the user to define a fixed order for the windows and eve
 - Finish readme
 
 ## How to use it
-
+https://github.com/JulienBouchardIT/WOM/wiki
 
 ## Download
 
