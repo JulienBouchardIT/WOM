@@ -200,7 +200,6 @@ namespace WOM
         {
             if (GetSelectedItf() != null)
             {
-                string winName = GetSelectedItf().name;
                 this.Visibility = Visibility.Hidden;
                 ScaleOverlay overlay = new ScaleOverlay(GetSelectedItf());
                 W32.SetForegroundWindow(GetSelectedItf().handler);
@@ -214,7 +213,16 @@ namespace WOM
 
         public void Move(object sender, RoutedEventArgs e)
         {
-            //todo
+            if (GetSelectedItf() != null)
+            {
+                this.Visibility = Visibility.Hidden;
+                MoveOverlay overlay = new MoveOverlay(GetSelectedItf());
+                W32.SetForegroundWindow(GetSelectedItf().handler);
+
+                overlay.ShowDialog();
+
+                this.Visibility = Visibility.Visible;
+            }
         }
 
         public void Kill(object sender, RoutedEventArgs e)

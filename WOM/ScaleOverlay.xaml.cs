@@ -29,6 +29,7 @@ namespace WOM
             this.Height = SystemParameters.PrimaryScreenHeight;
             this.Top = SystemParameters.VirtualScreenTop;
             this.Left = SystemParameters.VirtualScreenLeft;
+            this.Activate();
         }
 
         void MainWindow_KeyDown(object sender, KeyEventArgs e)
@@ -45,10 +46,10 @@ namespace WOM
                     itf.Resize(Size.PlusHeight, 1);
                     break;
                 case Key.Down:
-                    itf.Resize(Size.MinusHeight, 2);
+                    itf.Resize(Size.MinusHeight, 1);
                     break;
                 case Key.Left:
-                    itf.Resize(Size.MinusWidth, 2);
+                    itf.Resize(Size.MinusWidth, 1);
                     break;
                 case Key.Right:
                     itf.Resize(Size.PlusWidth, 1);

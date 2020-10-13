@@ -19,8 +19,9 @@ namespace WOM
     /// </summary>
     public partial class MoveOverlay : Window
     {
-        public MoveOverlay()
+        public MoveOverlay(WinInterface itf)
         {
+            this.itf = itf;
             InitializeComponent();
             this.Topmost = true;
             this.KeyDown += new KeyEventHandler(MainWindow_KeyDown);
@@ -28,6 +29,7 @@ namespace WOM
             this.Height = SystemParameters.PrimaryScreenHeight;
             this.Top = SystemParameters.VirtualScreenTop;
             this.Left = SystemParameters.VirtualScreenLeft;
+            this.Activate();
         }
 
         void MainWindow_KeyDown(object sender, KeyEventArgs e)
@@ -36,6 +38,28 @@ namespace WOM
             {
                 this.Close();
             }
+            var key = e.Key;
+
+            switch (key)
+            {
+                case Key.Up:
+                    itf.Move(Direction.up, 1);
+                    break;
+                case Key.Down:
+                    itf.Move(Direction.down, 1);
+                    break;
+                case Key.Left:
+                    itf.Move(Direction.left, 1);
+                    break;
+                case Key.Right:
+                    itf.Move(Direction.right, 1);
+                    break;
+                default:
+                    break;
+            }
+            //W32.SetForegroundWindow(itf.handler);
         }
+
+        private WinInterface itf { get; set; }
     }
 }

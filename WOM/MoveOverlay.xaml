@@ -7,19 +7,23 @@
         mc:Ignorable="d"
         Title="MoveOverlay" Height="130" Width="1000"
         AllowsTransparency="True" WindowStyle="None"
-        Background="Transparent"
         >
+    <Window.Background>
+        <SolidColorBrush Opacity="0.01" Color="White"/>
+    </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="75"/>
             <RowDefinition Height="75"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" FontSize="50" HorizontalAlignment="Center" Content="Press directional arrows to move the window interface" >
+        <Label Grid.Row="1" FontSize="50" HorizontalAlignment="Center" Content="Press directional arrows to move the window interface" >
             <Label.BitmapEffect>
                 <DropShadowBitmapEffect Color="White" Direction="320" ShadowDepth="0" Opacity=".75" Softness="9" />
             </Label.BitmapEffect>
         </Label>
-        <Label Grid.Row="1" FontSize="30" HorizontalAlignment="Center" Content="Press ENTER or ESC when you are done">
+        <Label Grid.Row="2" FontSize="30" HorizontalAlignment="Center" Content="Press ENTER or ESC when you are done">
             <Label.BitmapEffect>
                 <DropShadowBitmapEffect Color="White" Direction="320" ShadowDepth="0" Opacity=".75" Softness="9" />
             </Label.BitmapEffect>
