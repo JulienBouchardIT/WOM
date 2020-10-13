@@ -12,12 +12,13 @@ This application allows the user to define a fixed order for the windows and eve
 - ~~Kill selected itf~~
 - ~~Put on foreground selected itf~~
 - Config file
-- Logging
 - ~~Make icon svg~~
 - Transform svg to ico
 - Integrate icons
 - Thread to apply rules to new spawning itf
 - Launch on start without config interface
+- Logging
+- Finish readme
 
 ## How to use it
 
