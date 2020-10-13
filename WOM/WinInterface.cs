@@ -4,10 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static WOM.W32;
 
 namespace WOM
 {
-    class WinInterface
+    public enum Direction{
+        up,
+        down,
+        left,
+        right
+    }
+
+    public enum Size
+    {
+        PlusWidth,
+        PlusHeight,
+        MinusWidth,
+        MinusHeight
+    }
+
+    public class WinInterface
     {
         public WinInterface(System.Diagnostics.Process process)
         {
@@ -27,6 +43,62 @@ namespace WOM
             this.title = "DESKTOP ICONS";
             this.fix = true;
             this.isIcon = false;
+        }
+
+        public void Move(Direction dir, int nPixel)
+        {
+            Rect rect;
+            W32.GetWindowRect(handler, out rect);
+            switch (dir)
+            {
+                case Direction.up:
+                    rect.bottom += nPixel;
+                    rect.top -= nPixel;
+                    break;
+                case Direction.down:
+                    rect.bottom -= nPixel;
+                    rect.top += nPixel;
+                    break;
+                case Direction.left:
+                    rect.left -= nPixel;
+                    rect.right += nPixel;
+                    break;
+                case Direction.right:
+                    rect.left += nPixel;
+                    rect.right -= nPixel;
+                    break;
+                default:
+                    break;
+            }
+
+            W32.MoveWindow(handler,rect.top, rect.left, rect.right-rect.left, rect.bottom-rect.top, true);
+        }
+
+        public void Resize(Size size, int nPixel)
+        {
+            Rect rect;
+            W32.GetWindowRect(handler, out rect);
+            int w = rect.right - rect.left;
+            int h = rect.bottom - rect.top;
+            switch (size)
+            {
+                case Size.PlusHeight:
+                    h += nPixel;
+                    break;
+                case Size.PlusWidth:
+                    w += nPixel;
+                    break;
+                case Size.MinusHeight:
+                    h -= nPixel;
+                    break;
+                case Size.MinusWidth:
+                    w -= nPixel;
+                    break;
+                default:
+                    break;
+            }
+            
+            W32.MoveWindow(handler, rect.top, rect.left, w, h, true);
         }
 
         public void addAsChild(IntPtr child)

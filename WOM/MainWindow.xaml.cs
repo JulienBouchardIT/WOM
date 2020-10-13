@@ -203,11 +203,9 @@ namespace WOM
             {
                 string winName = GetSelectedItf().name;
                 this.Visibility = Visibility.Hidden;
-                ScaleOverlay overlay = new ScaleOverlay();
+                ScaleOverlay overlay = new ScaleOverlay(GetSelectedItf());
 
                 overlay.ShowDialog();
-
-
 
                 this.Visibility = Visibility.Visible;
             }

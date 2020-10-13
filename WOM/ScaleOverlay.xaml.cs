@@ -19,8 +19,9 @@ namespace WOM
     /// </summary>
     public partial class ScaleOverlay : Window
     {
-        public ScaleOverlay()
+        public ScaleOverlay(WinInterface itf)
         {
+            this.itf = itf;
             InitializeComponent();
             this.Topmost = true;
             this.KeyDown += new KeyEventHandler(MainWindow_KeyDown);
@@ -36,6 +37,27 @@ namespace WOM
             {
                 this.Close();
             }
+            var key = e.Key;
+
+            switch (key)
+            {
+                case Key.Up:
+                    itf.Resize(Size.PlusHeight, 1);
+                    break;
+                case Key.Down:
+                    itf.Resize(Size.MinusHeight, 2);
+                    break;
+                case Key.Left:
+                    itf.Resize(Size.MinusWidth, 2);
+                    break;
+                case Key.Right:
+                    itf.Resize(Size.PlusWidth, 1);
+                    break;
+                default:
+                    break;
+            }
         }
+
+        private WinInterface itf { get; set; }
     }
 }

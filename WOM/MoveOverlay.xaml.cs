@@ -23,6 +23,19 @@ namespace WOM
         {
             InitializeComponent();
             this.Topmost = true;
+            this.KeyDown += new KeyEventHandler(MainWindow_KeyDown);
+            this.Width = SystemParameters.PrimaryScreenWidth;
+            this.Height = SystemParameters.PrimaryScreenHeight;
+            this.Top = SystemParameters.VirtualScreenTop;
+            this.Left = SystemParameters.VirtualScreenLeft;
+        }
+
+        void MainWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter || e.Key == Key.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

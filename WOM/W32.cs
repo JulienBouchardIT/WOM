@@ -129,6 +129,5 @@ namespace WOM
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern bool GetWindowRect(IntPtr hwnd, out Rect lpRect);
-
     }
 }
