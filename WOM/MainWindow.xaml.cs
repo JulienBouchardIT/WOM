@@ -20,7 +20,7 @@ namespace WOM
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const string WIKI_URL = "https://github.com/JulienBouchardIT/WOM/blob/master/README.md#how-to-use-it";
+        private const string WIKI_URL = "https://github.com/JulienBouchardIT/WOM/wiki";
         private const string DESKTOP_ICONS = "DESKTOP ICONS";
         private WindowOrderManager wom = WindowOrderManager.getWOM();
 
@@ -67,7 +67,7 @@ namespace WOM
 
         private WinInterface GetSelectedItf()
         {
-            return (listBox.SelectedItem as WinInterface);
+            return (listNotAssing.SelectedItem as WinInterface);
         }
 
         private Point _dragStartPoint;
@@ -86,10 +86,10 @@ namespace WOM
 
             private void Init_ListBox()
             {
-                
-                listBox.ItemsSource = wom.listWinItf;
 
-                listBox.PreviewMouseMove += ListBox_PreviewMouseMove;
+                listNotAssing.ItemsSource = wom.listWinItf;
+
+                listNotAssing.PreviewMouseMove += ListBox_PreviewMouseMove;
 
                 var style = new Style(typeof(ListBoxItem));
                 style.Setters.Add(new Setter(ListBoxItem.AllowDropProperty, true));
@@ -101,8 +101,8 @@ namespace WOM
                         new EventSetter(
                             ListBoxItem.DropEvent,
                             new DragEventHandler(ListBoxItem_Drop)));
-                listBox.ItemContainerStyle = style;
-                listBox.Items.Refresh();
+                listNotAssing.ItemContainerStyle = style;
+                listNotAssing.Items.Refresh();
             }
 
 
@@ -134,8 +134,8 @@ namespace WOM
                     var source = e.Data.GetData(typeof(WinInterface)) as WinInterface;
                     var target = ((ListBoxItem)(sender)).DataContext as WinInterface;
 
-                    int sourceIndex = listBox.Items.IndexOf(source);
-                    int targetIndex = listBox.Items.IndexOf(target);
+                    int sourceIndex = listNotAssing.Items.IndexOf(source);
+                    int targetIndex = listNotAssing.Items.IndexOf(target);
 
                     Move(source, sourceIndex, targetIndex);
                 }
@@ -233,6 +233,16 @@ namespace WOM
                 GetSelectedItf().Kill();
                 Init_ListBox(); // Actualize
             }
+        }
+
+        public void SwitchDarkMode(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        public void SwitchLightMode(object sender, RoutedEventArgs e)
+        {
+
         }
 
     }
