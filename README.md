@@ -14,10 +14,11 @@ This application allows the user to define a fixed order for the windows and eve
 - Config file
 - ~~Make icon svg~~
 - ~~Transform svg to png~~
-- Integrate icons
+- ~~Integrate icons~~
 - Thread to apply rules to new spawning itf
 - Launch on start without config interface
 - Logging
+- Intallator
 - Finish readme
 
 ## How to use it
