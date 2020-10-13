@@ -4,10 +4,25 @@ Window order manager
 
 This application allows the user to define a fixed order for the windows and even to put some between the background and the desktop icons.
 
-# How to use it
+## Todo before first release
+- ~~Switch between notify icon and config app~~
+- ~~Send a itf between bg and icons~~
+- ~~Scale selected itf~~
+- ~~Move selected itf~~
+- ~~Kill selected itf~~
+- ~~Put on foreground selected itf~~
+- Config file
+- Logging
+- ~~Make icon svg~~
+- Transform svg to ico
+- Integrate icons
+- Thread to apply rules to new spawning itf
+- Launch on start without config interface
+
+## How to use it
 
 
-# Download
+## Download
 
 
 
