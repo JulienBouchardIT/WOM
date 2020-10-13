@@ -20,7 +20,8 @@
             <RowDefinition />
             <RowDefinition Height="75"/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" Background="White" BorderThickness="0" CornerRadius="8,8,0,0">
+        
+        <Border Grid.Row="0" Background="White" BorderThickness="0,0,0,2" BorderBrush="LightGray" CornerRadius="8,8,0,0">
             <Grid MouseDown="Window_Drag">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="30"/>
@@ -78,153 +79,175 @@
         <Grid Grid.Row="1" Background="White" Margin="0,-1,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
 
-            <Label Grid.Column="1" Grid.Row="0" HorizontalContentAlignment="Center" FontWeight="Bold">Unassigned windows</Label>
-            <ListBox Grid.Column="1" Grid.Row="1" Grid.RowSpan="5" x:Name="listNotAssing" BorderThickness="0" ItemsSource="{Binding}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="30"/>
-                                <ColumnDefinition Width="30"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Ellipse
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="15">Unassigned windows</Label>
+                <ListBox Grid.Row="1" x:Name="listNotAssing" BorderThickness="0" ItemsSource="{Binding}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30"/>
+                                    <ColumnDefinition Width="30"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Ellipse
                             Width="15"
                             Height="15"
                             Fill="Red"
                             Canvas.Left="0"
                             Canvas.Top="0"/>
-                            <Button Grid.Column="1" Background="White" BorderThickness="0" IsEnabled="{Binding isIcon, Mode=OneTime}">
-                                <Button.ToolTip>
-                                    <ToolTip>
-                                        <DockPanel>
-                                            <TextBlock TextWrapping="WrapWithOverflow">Actualize the interface list</TextBlock>
-                                        </DockPanel>
-                                    </ToolTip>
-                                </Button.ToolTip>
-                                <StackPanel>
-                                    <Image Width="20" Height="20" Source="resource/black/LockBlack.png" />
-                                </StackPanel>
-                            </Button>
-                            <TextBlock Grid.Column="2" Text="{Binding name}"/>
-                        </Grid>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                                <Button Grid.Column="1" Background="White" BorderThickness="0" IsEnabled="{Binding isIcon, Mode=OneTime}">
+                                    <Button.ToolTip>
+                                        <ToolTip>
+                                            <DockPanel>
+                                                <TextBlock TextWrapping="WrapWithOverflow">Actualize the interface list</TextBlock>
+                                            </DockPanel>
+                                        </ToolTip>
+                                    </Button.ToolTip>
+                                    <StackPanel>
+                                        <Image Width="20" Height="20" Source="resource/black/LockBlack.png" />
+                                    </StackPanel>
+                                </Button>
+                                <TextBlock Grid.Column="2" Text="{Binding name}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
 
-            <Label Grid.Column="0" Grid.Row="0" HorizontalContentAlignment="Center" FontWeight="Bold">Over wallpaper</Label>
-            <ListBox Grid.Column="0" Grid.Row="1" x:Name="listBackground" BorderThickness="0" ItemsSource="{Binding}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="30"/>
-                                <ColumnDefinition Width="30"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Ellipse
+            <GridSplitter Grid.Column="1" Grid.RowSpan="8" Width="5" HorizontalAlignment="Stretch" />
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0">
+                    <Label HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="15">Over wallpaper</Label>
+                    <ListBox x:Name="listBackground" BorderThickness="0" ItemsSource="{Binding}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Ellipse
                             Width="15"
                             Height="15"
                             Fill="Red"
                             Canvas.Left="0"
                             Canvas.Top="0"/>
-                            <Button Grid.Column="1" Background="White" BorderThickness="0" IsEnabled="{Binding isIcon, Mode=OneTime}">
-                                <Button.ToolTip>
-                                    <ToolTip>
-                                        <DockPanel>
-                                            <TextBlock TextWrapping="WrapWithOverflow">Actualize the interface list</TextBlock>
-                                        </DockPanel>
-                                    </ToolTip>
-                                </Button.ToolTip>
-                                <StackPanel>
-                                    <Image Width="20" Height="20" Source="resource/black/LockBlack.png" />
-                                </StackPanel>
-                            </Button>
-                            <TextBlock Grid.Column="2" Text="{Binding name}"/>
-                        </Grid>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                                    <Button Grid.Column="1" Background="White" BorderThickness="0" IsEnabled="{Binding isIcon, Mode=OneTime}">
+                                        <Button.ToolTip>
+                                            <ToolTip>
+                                                <DockPanel>
+                                                    <TextBlock TextWrapping="WrapWithOverflow">Actualize the interface list</TextBlock>
+                                                </DockPanel>
+                                            </ToolTip>
+                                        </Button.ToolTip>
+                                        <StackPanel>
+                                            <Image Width="20" Height="20" Source="resource/black/LockBlack.png" />
+                                        </StackPanel>
+                                    </Button>
+                                    <TextBlock Grid.Column="2" Text="{Binding name}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
 
-            <Label Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Center" FontWeight="Bold">Over icons</Label>
-            <ListBox Grid.Column="0" Grid.Row="3" x:Name="listButtom" BorderThickness="0" ItemsSource="{Binding}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="30"/>
-                                <ColumnDefinition Width="30"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Ellipse
+                <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" />
+
+                <StackPanel Grid.Row="2">
+                    <Label HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="15">Over icons</Label>
+                    <ListBox x:Name="listButtom" BorderThickness="0" ItemsSource="{Binding}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Ellipse
                             Width="15"
                             Height="15"
                             Fill="Red"
                             Canvas.Left="0"
                             Canvas.Top="0"/>
-                            <Button Grid.Column="1" Background="White" BorderThickness="0" IsEnabled="{Binding isIcon, Mode=OneTime}">
-                                <Button.ToolTip>
-                                    <ToolTip>
-                                        <DockPanel>
-                                            <TextBlock TextWrapping="WrapWithOverflow">Actualize the interface list</TextBlock>
-                                        </DockPanel>
-                                    </ToolTip>
-                                </Button.ToolTip>
-                                <StackPanel>
-                                    <Image Width="20" Height="20" Source="resource/black/LockBlack.png" />
-                                </StackPanel>
-                            </Button>
-                            <TextBlock Grid.Column="2" Text="{Binding name}"/>
-                        </Grid>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                                    <Button Grid.Column="1" Background="White" BorderThickness="0" IsEnabled="{Binding isIcon, Mode=OneTime}">
+                                        <Button.ToolTip>
+                                            <ToolTip>
+                                                <DockPanel>
+                                                    <TextBlock TextWrapping="WrapWithOverflow">Actualize the interface list</TextBlock>
+                                                </DockPanel>
+                                            </ToolTip>
+                                        </Button.ToolTip>
+                                        <StackPanel>
+                                            <Image Width="20" Height="20" Source="resource/black/LockBlack.png" />
+                                        </StackPanel>
+                                    </Button>
+                                    <TextBlock Grid.Column="2" Text="{Binding name}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
 
-            <Label Grid.Column="0" Grid.Row="4" HorizontalContentAlignment="Center" FontWeight="Bold">Over everything</Label>
-            <ListBox Grid.Column="0" Grid.Row="5" x:Name="listForeground" BorderThickness="0" ItemsSource="{Binding}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="30"/>
-                                <ColumnDefinition Width="30"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Ellipse
+                </StackPanel>
+
+                <GridSplitter Grid.Row="3" Height="5" HorizontalAlignment="Stretch" />
+
+                <StackPanel Grid.Row="4">
+                    <Label HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="15">Over everything</Label>
+                    <ListBox x:Name="listForeground" BorderThickness="0" ItemsSource="{Binding}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Ellipse
                             Width="15"
                             Height="15"
                             Fill="Red"
                             Canvas.Left="0"
                             Canvas.Top="0"/>
-                            <Button Grid.Column="1" Background="White" BorderThickness="0" IsEnabled="{Binding isIcon, Mode=OneTime}">
-                                <Button.ToolTip>
-                                    <ToolTip>
-                                        <DockPanel>
-                                            <TextBlock TextWrapping="WrapWithOverflow">Actualize the interface list</TextBlock>
-                                        </DockPanel>
-                                    </ToolTip>
-                                </Button.ToolTip>
-                                <StackPanel>
-                                    <Image Width="20" Height="20" Source="resource/black/LockBlack.png" />
-                                </StackPanel>
-                            </Button>
-                            <TextBlock Grid.Column="2" Text="{Binding name}"/>
-                        </Grid>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-            
+                                    <Button Grid.Column="1" Background="White" BorderThickness="0" IsEnabled="{Binding isIcon, Mode=OneTime}">
+                                        <Button.ToolTip>
+                                            <ToolTip>
+                                                <DockPanel>
+                                                    <TextBlock TextWrapping="WrapWithOverflow">Actualize the interface list</TextBlock>
+                                                </DockPanel>
+                                            </ToolTip>
+                                        </Button.ToolTip>
+                                        <StackPanel>
+                                            <Image Width="20" Height="20" Source="resource/black/LockBlack.png" />
+                                        </StackPanel>
+                                    </Button>
+                                    <TextBlock Grid.Column="2" Text="{Binding name}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </Grid>
+
         </Grid>
 
         <Grid Grid.Row="2">
