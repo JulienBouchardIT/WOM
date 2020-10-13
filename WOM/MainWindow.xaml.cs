@@ -198,12 +198,12 @@ namespace WOM
 
         public void Scale(object sender, RoutedEventArgs e)
         {
-            //todo
             if (GetSelectedItf() != null)
             {
                 string winName = GetSelectedItf().name;
                 this.Visibility = Visibility.Hidden;
                 ScaleOverlay overlay = new ScaleOverlay(GetSelectedItf());
+                W32.SetForegroundWindow(GetSelectedItf().handler);
 
                 overlay.ShowDialog();
 

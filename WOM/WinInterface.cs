@@ -98,7 +98,7 @@ namespace WOM
                     break;
             }
             
-            W32.MoveWindow(handler, rect.top, rect.left, w, h, true);
+            W32.MoveWindow(handler, rect.left, rect.top, w, h, true);
         }
 
         public void addAsChild(IntPtr child)

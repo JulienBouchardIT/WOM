@@ -56,6 +56,7 @@ namespace WOM
                 default:
                     break;
             }
+            //W32.SetForegroundWindow(itf.handler);
         }
 
         private WinInterface itf { get; set; }
