@@ -13,7 +13,7 @@ This application allows the user to define a fixed order for the windows and eve
 - ~~Put on foreground selected itf~~
 - Config file
 - ~~Make icon svg~~
-- Transform svg to ico
+- ~~Transform svg to png~~
 - Integrate icons
 - Thread to apply rules to new spawning itf
 - Launch on start without config interface
