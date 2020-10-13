@@ -29,6 +29,7 @@
                     <ColumnDefinition Width="30"/>
                     <ColumnDefinition Width="30"/>
                     <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
                 </Grid.ColumnDefinitions>
                 <Image Width="25" Margin="2">
                     <Image.Source>
@@ -36,7 +37,15 @@
                     </Image.Source>
                 </Image>
                 <Label Grid.Column="1" Margin="0,4,0,0">WOM 0.0</Label>
-                <Button Grid.Column="2" BorderThickness="0" Background="Transparent" Click="Actualize">
+                <StackPanel Grid.Column="2" Width="25" Height="25" Margin="0,0,0,0">
+                    <Button BorderThickness="0" Background="Transparent" Visibility="Collapsed">
+                        <Image Source="resource/black/On.png" />
+                    </Button>
+                    <Button BorderThickness="0" Background="Transparent">
+                        <Image Source="resource/black/Off.png" />
+                    </Button>
+                </StackPanel>
+                <Button Grid.Column="3" BorderThickness="0" Background="Transparent" Click="Actualize">
                     <Button.ToolTip>
                         <ToolTip>
                             <DockPanel>
@@ -46,7 +55,7 @@
                     </Button.ToolTip>
                     <Image Width="20" Height="20" Source="resource/black/ActualizeBlack.png" />
                 </Button>
-                <Button Grid.Column="3" BorderThickness="0" Background="Transparent" Click="OpenWiki">
+                <Button Grid.Column="4" BorderThickness="0" Background="Transparent" Click="OpenWiki">
                     <Button.ToolTip>
                         <ToolTip>
                             <DockPanel>
@@ -56,7 +65,7 @@
                     </Button.ToolTip>
                     <Image Width="20" Height="20" Source="resource/black/HelpBlack.png" />
                 </Button>
-                <Button Grid.Column="4" BorderThickness="0" Background="Transparent" Click="CloseButton">
+                <Button Grid.Column="5" BorderThickness="0" Background="Transparent" Click="CloseButton">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="0,8,0,0"/>

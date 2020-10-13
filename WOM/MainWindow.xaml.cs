@@ -193,7 +193,8 @@ namespace WOM
         public void Top(object sender, RoutedEventArgs e)
         {
             //todo:make temporary. Hold down button
-            GetSelectedItf().setForeground();
+            if (GetSelectedItf() != null)
+                GetSelectedItf().setForeground();
         }
 
         public void Scale(object sender, RoutedEventArgs e)
@@ -227,8 +228,12 @@ namespace WOM
 
         public void Kill(object sender, RoutedEventArgs e)
         {
-            GetSelectedItf().Kill();
-            Init_ListBox(); // Actualize
+            if (GetSelectedItf() != null)
+            {
+                GetSelectedItf().Kill();
+                Init_ListBox(); // Actualize
+            }
         }
+
     }
 }
