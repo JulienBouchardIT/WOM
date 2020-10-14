@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="WOM 0.0" 
         Height="500" Width="600" ResizeMode="NoResize"
-        Icon="layer.ico"
+        Icon="Resources/layer.ico"
         Closing="Window_Closing"
         AllowsTransparency="True" WindowStyle="None"
         >
@@ -33,16 +33,16 @@
                 </Grid.ColumnDefinitions>
                 <Image Width="25" Margin="2">
                     <Image.Source>
-                        <BitmapImage DecodePixelWidth="300" UriSource="resource/layer.ico" />
+                        <BitmapImage DecodePixelWidth="300" UriSource="Resources/layer.ico" />
                     </Image.Source>
                 </Image>
                 <Label Grid.Column="1" Margin="0,4,0,0">WOM 0.0</Label>
                 <StackPanel Grid.Column="2" Width="25" Height="25" Margin="0,0,0,0">
                     <Button BorderThickness="0" Background="Transparent" Click="SwitchLightMode" Visibility="Collapsed">
-                        <Image Source="resource/black/On.png" />
+                        <Image Source="Resources/black/On.png" />
                     </Button>
                     <Button BorderThickness="0" Background="Transparent" Click="SwitchDarkMode">
-                        <Image Source="resource/black/Off.png" />
+                        <Image Source="Resources/black/Off.png" />
                     </Button>
                 </StackPanel>
                 <Button Grid.Column="3" BorderThickness="0" Background="Transparent" Click="Actualize">
@@ -53,7 +53,7 @@
                             </DockPanel>
                         </ToolTip>
                     </Button.ToolTip>
-                    <Image Width="20" Height="20" Source="resource/black/ActualizeBlack.png" />
+                    <Image Width="20" Height="20" Source="Resources/black/ActualizeBlack.png" />
                 </Button>
                 <Button Grid.Column="4" BorderThickness="0" Background="Transparent" Click="OpenWiki">
                     <Button.ToolTip>
@@ -63,10 +63,10 @@
                             </DockPanel>
                         </ToolTip>
                     </Button.ToolTip>
-                    <Image Width="20" Height="20" Source="resource/black/HelpBlack.png" />
+                    <Image Width="20" Height="20" Source="Resources/black/HelpBlack.png" />
                 </Button>
                 <Button Grid.Column="5" BorderThickness="0" Background="Transparent" Click="CloseButton">
-                    <Image Width="20" Height="20" Source="resource/black/ExitBlack.png"/>
+                    <Image Width="20" Height="20" Source="Resources/black/ExitBlack.png"/>
                 </Button>
             </Grid>
         </Border>
@@ -108,7 +108,7 @@
                                         </ToolTip>
                                     </Button.ToolTip>
                                     <StackPanel>
-                                        <Image Width="20" Height="20" Source="resource/black/LockBlack.png" />
+                                        <Image Width="20" Height="20" Source="Resources/black/LockBlack.png" />
                                     </StackPanel>
                                 </Button>
                                 <TextBlock Grid.Column="2" Text="{Binding name}"/>
@@ -155,7 +155,7 @@
                                             </ToolTip>
                                         </Button.ToolTip>
                                         <StackPanel>
-                                            <Image Width="20" Height="20" Source="resource/black/LockBlack.png" />
+                                            <Image Width="20" Height="20" Source="Resources/black/LockBlack.png" />
                                         </StackPanel>
                                     </Button>
                                     <TextBlock Grid.Column="2" Text="{Binding name}"/>
@@ -168,7 +168,7 @@
                 <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" />
 
                 <StackPanel Grid.Row="2">
-                    <Label HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="15">Over icons</Label>
+                    <Label HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="15">Over icon</Label>
                     <ListBox x:Name="listButtom" BorderThickness="0" ItemsSource="{Binding}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
@@ -193,7 +193,7 @@
                                             </ToolTip>
                                         </Button.ToolTip>
                                         <StackPanel>
-                                            <Image Width="20" Height="20" Source="resource/black/LockBlack.png" />
+                                            <Image Width="20" Height="20" Source="Resources/black/LockBlack.png" />
                                         </StackPanel>
                                     </Button>
                                     <TextBlock Grid.Column="2" Text="{Binding name}"/>
@@ -232,7 +232,7 @@
                                             </ToolTip>
                                         </Button.ToolTip>
                                         <StackPanel>
-                                            <Image Width="20" Height="20" Source="resource/black/LockBlack.png" />
+                                            <Image Width="20" Height="20" Source="Resources/black/LockBlack.png" />
                                         </StackPanel>
                                     </Button>
                                     <TextBlock Grid.Column="2" Text="{Binding name}"/>
@@ -262,7 +262,7 @@
                         </DockPanel>
                     </ToolTip>
                 </Button.ToolTip>
-                <Image Width="55" Height="55" Source="resource/white/TrashWhite.png" />
+                <Image Width="55" Height="55" Source="Resources/white/TrashWhite.png" />
             </Button>
             <Button Click="Top" Grid.Column="1" Background="#15B2FF" BorderBrush="White"  FontSize="20" BorderThickness="0" Foreground="White" FontWeight="Bold">
                 <Button.ToolTip>
@@ -272,7 +272,7 @@
                         </DockPanel>
                     </ToolTip>
                 </Button.ToolTip>
-                <Image Width="60" Height="60" Source="resource/white/TopWhitev2.png" />
+                <Image Width="60" Height="60" Source="Resources/white/TopWhitev2.png" />
             </Button>
             <Button Click="Move" Grid.Column="2" Background="#15B2FF" BorderBrush="White" FontSize="20" BorderThickness="0" Foreground="White" FontWeight="Bold">
                 <Button.ToolTip>
@@ -282,7 +282,7 @@
                         </DockPanel>
                     </ToolTip>
                 </Button.ToolTip>
-                <Image Width="55" Height="55" Source="resource/white/MoveWhite.png" />
+                <Image Width="55" Height="55" Source="Resources/white/MoveWhite.png" />
             </Button>
             <Button Click="Scale" Grid.Column="3" Background="#15B2FF" BorderBrush="White" FontSize="20" BorderThickness="0" Foreground="White" FontWeight="Bold">
                 <Button.ToolTip>
@@ -292,7 +292,7 @@
                         </DockPanel>
                     </ToolTip>
                 </Button.ToolTip>
-                <Image Width="60" Height="60" Source="resource/white/ResizeWhite.png" />
+                <Image Width="60" Height="60" Source="Resources/white/ResizeWhite.png" />
             </Button>
             <Button Click="Kill" Grid.Column="4" Background="#15B2FF" BorderBrush="White" FontSize="20" BorderThickness="0" Foreground="White" FontWeight="Bold">
                 <Button.ToolTip>
@@ -302,7 +302,7 @@
                         </DockPanel>
                     </ToolTip>
                 </Button.ToolTip>
-                <Image Width="60" Height="60" Source="resource/white/KillWhitev1.png" />
+                <Image Width="60" Height="60" Source="Resources/white/KillWhitev1.png" />
             </Button>
             
             <Button Grid.Column="5" Height="75" BorderThickness="0" BorderBrush="White" Click="Apply" ClickMode="Press" Foreground="White" FontSize="50" Margin="0" Padding="0" Background="#01A500" FontWeight="Bold">APPLY</Button>

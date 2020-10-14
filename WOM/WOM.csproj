@@ -52,7 +52,8 @@
     </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>layer.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -81,6 +82,11 @@
     <Compile Include="Config.cs" />
     <Compile Include="MoveOverlay.xaml.cs">
       <DependentUpon>MoveOverlay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
     <Compile Include="ScaleOverlay.xaml.cs">
       <DependentUpon>ScaleOverlay.xaml</DependentUpon>
@@ -129,6 +135,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -138,24 +148,46 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="layer.ico" />
-    <Content Include="resource\black\svg\ActializeBlack.svg" />
-    <Content Include="resource\black\svg\ExitBlack.svg" />
-    <Content Include="resource\black\svg\HelpBlack.svg" />
-    <Content Include="resource\black\svg\KillBlackv1.svg" />
-    <Content Include="resource\black\svg\KillBlackv2.svg" />
-    <Content Include="resource\black\svg\LockBlack.svg" />
-    <Content Include="resource\black\svg\MoveBlack.svg" />
-    <Content Include="resource\black\svg\ResizeBlack.svg" />
-    <Content Include="resource\black\svg\TopBlackv1.svg" />
-    <Content Include="resource\black\svg\TopBlackv2.svg" />
-    <Content Include="resource\black\svg\TrashBlack.svg" />
-    <Content Include="resource\black\svg\UnlockBlack.svg" />
-    <Resource Include="resource\layer.ico" />
+    <Resource Include="Resources\black\ActualizeBlack.png" />
+    <Resource Include="Resources\black\ExitBlack.png" />
+    <Resource Include="Resources\black\HelpBlack.png" />
+    <Resource Include="Resources\black\KillBlackv1.png" />
+    <Resource Include="Resources\black\Killv2.png" />
+    <Resource Include="Resources\black\LockBlack.png" />
+    <Resource Include="Resources\black\MoveBlack.png" />
+    <Resource Include="Resources\black\Off.png" />
+    <Resource Include="Resources\black\On.png" />
+    <Resource Include="Resources\black\ResizeBlack.png" />
+    <Content Include="Resources\black\svg\ActializeBlack.svg" />
+    <Content Include="Resources\black\svg\ExitBlack.svg" />
+    <Content Include="Resources\black\svg\HelpBlack.svg" />
+    <Content Include="Resources\black\svg\KillBlackv1.svg" />
+    <Content Include="Resources\black\svg\KillBlackv2.svg" />
+    <Content Include="Resources\black\svg\LockBlack.svg" />
+    <Content Include="Resources\black\svg\MoveBlack.svg" />
+    <Content Include="Resources\black\svg\ResizeBlack.svg" />
+    <Content Include="Resources\black\svg\TopBlackv1.svg" />
+    <Content Include="Resources\black\svg\TopBlackv2.svg" />
+    <Content Include="Resources\black\svg\TrashBlack.svg" />
+    <Content Include="Resources\black\svg\UnlockBlack.svg" />
+    <Resource Include="Resources\black\TopBlackv1.png" />
+    <Resource Include="Resources\black\TopBlackv2.png" />
+    <Resource Include="Resources\black\TrashBlack.png" />
+    <Resource Include="Resources\black\UnlockBlack.png" />
+    <Resource Include="Resources\white\ActualizeWhite.png" />
+    <Resource Include="Resources\white\ExitWhite.png" />
+    <Resource Include="Resources\white\HelpWhite.png" />
+    <Resource Include="Resources\white\KillWhitev1.png" />
+    <Resource Include="Resources\white\LockWhite.png" />
+    <Resource Include="Resources\white\MoveWhite.png" />
+    <Resource Include="Resources\white\ResizeWhite.png" />
+    <Resource Include="Resources\white\TopWhite.png" />
+    <Resource Include="Resources\white\TopWhitev2.png" />
+    <Resource Include="Resources\white\TrashWhite.png" />
+    <Resource Include="Resources\white\UnlockWhitepng.png" />
+    <Resource Include="Resources\layer.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="resource\white\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
