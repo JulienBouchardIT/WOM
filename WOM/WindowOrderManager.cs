@@ -28,7 +28,6 @@ namespace WOM
                 listWinItf = new ObservableCollection<WinInterface>();
 
             listWinItf.Clear();
-            listWinItf.Add(new WinInterface());
 
             foreach (WinInterface window in DesktopHandler.GetAllWindows())
             {

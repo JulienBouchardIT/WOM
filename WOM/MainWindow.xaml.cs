@@ -21,7 +21,6 @@ namespace WOM
     public partial class MainWindow : Window
     {
         private const string WIKI_URL = "https://github.com/JulienBouchardIT/WOM/wiki";
-        private const string DESKTOP_ICONS = "DESKTOP ICONS";
 
         public MainWindow()
         {

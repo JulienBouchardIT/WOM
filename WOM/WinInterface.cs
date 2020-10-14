@@ -36,45 +36,34 @@ namespace WOM
             this.isIcon = true;
         }
 
-        public WinInterface()
-        {
-            this.id = 0;
-            this.name = "DESKTOP ICONS";
-            this.title = "DESKTOP ICONS";
-            this.fix = true;
-            this.isIcon = false;
-        }
-
         public void Move(Direction dir, int nPixel)
         {
             Rect rect;
             W32.GetWindowRect(handler, out rect);
             int w = rect.right - rect.left;
             int h = rect.bottom - rect.top;
-            Console.WriteLine("b" + rect.left + " " + rect.top + " " + w + " " + h);
             switch (dir)
             {
                 case Direction.up:
-                    rect.bottom += nPixel;
+                    rect.bottom -= nPixel;
                     rect.top -= nPixel;
                     break;
                 case Direction.down:
-                    rect.bottom -= nPixel;
+                    rect.bottom += nPixel;
                     rect.top += nPixel;
                     break;
                 case Direction.left:
                     rect.left -= nPixel;
-                    rect.right += nPixel;
+                    rect.right -= nPixel;
                     break;
                 case Direction.right:
                     rect.left += nPixel;
-                    rect.right -= nPixel;
+                    rect.right += nPixel;
                     break;
                 default:
                     break;
             }
-            Console.WriteLine("a"+rect.left+" "+rect.top+" "+w+" "+h);
-            W32.MoveWindow(handler, rect.left, rect.top, w, h, true);
+            W32.MoveWindow(handler, rect.left, rect.top, w, h, false);
         }
 
         public void Resize(Size size, int nPixel)

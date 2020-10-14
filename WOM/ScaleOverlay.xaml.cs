@@ -36,8 +36,8 @@ namespace WOM
         {
             if (e.Key == Key.Enter || e.Key == Key.Escape)
             {
-                this.Close();
                 wom.CloseOverlays();
+                this.Close();
             }
             var key = e.Key;
 
@@ -47,10 +47,10 @@ namespace WOM
                     itf.Resize(Size.PlusHeight, 1);
                     break;
                 case Key.Down:
-                    itf.Resize(Size.MinusHeight, 1);
+                    itf.Resize(Size.MinusHeight, 2);
                     break;
                 case Key.Left:
-                    itf.Resize(Size.MinusWidth, 1);
+                    itf.Resize(Size.MinusWidth, 2);
                     break;
                 case Key.Right:
                     itf.Resize(Size.PlusWidth, 1);

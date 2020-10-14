@@ -45,13 +45,13 @@ namespace WOM
             switch (key)
             {
                 case Key.Up:
-                    itf.Move(Direction.up, 1);
+                    itf.Move(Direction.up, 2);
                     break;
                 case Key.Down:
                     itf.Move(Direction.down, 1);
                     break;
                 case Key.Left:
-                    itf.Move(Direction.left, 1);
+                    itf.Move(Direction.left, 2);
                     break;
                 case Key.Right:
                     itf.Move(Direction.right, 1);
