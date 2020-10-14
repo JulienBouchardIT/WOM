@@ -83,6 +83,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Config.cs" />
+    <Compile Include="ListBoxFactory.cs" />
     <Compile Include="MoveOverlay.xaml.cs">
       <DependentUpon>MoveOverlay.xaml</DependentUpon>
     </Compile>

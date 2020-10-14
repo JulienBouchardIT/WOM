@@ -64,6 +64,73 @@ namespace WOM
 
         #region Listbox
 
+        private void Init_ListBox()
+        {
+            listNotAssing.ItemsSource = wom.ListNotAssing;
+            listBackground.ItemsSource = wom.ListBackground;
+            listBottom.ItemsSource = wom.ListBottom;
+            listForeground.ItemsSource = wom.ListForeground;
+
+            MouseButtonEventHandler buttonDownHandler = new MouseButtonEventHandler(ListBoxItem_PreviewMouseLeftButtonDown);
+
+            ListBoxFactory.InitAllListBox(listNotAssing, listBackground, listBottom, listForeground,
+                List_PreviewMouseMove, buttonDownHandler, ListBoxItem_Drop, ListBox_PreviewMouseLeftButtonDown, ListBox_Drop);
+        }
+
+        private void ListBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //todo: same as ListBoxitem_PreviewMouseLeftButtonDown ?
+            _dragStartPoint = e.GetPosition(null);
+        }
+
+        private void ListBox_Drop(object sender, DragEventArgs e)
+        {
+            if (sender is ListBox)
+            {
+                var source = e.Data.GetData(typeof(WinInterface)) as WinInterface;
+                var target = ((ListBox)(sender)) as ListBox;
+
+                ((IList<WinInterface>)target.ItemsSource).Add(source); //Add elem to destination
+                //todo: remove from source
+
+            }
+        }
+
+        private void List_PreviewMouseMove(object sender, MouseEventArgs e)
+        {
+            Point point = e.GetPosition(null);
+            Vector diff = _dragStartPoint - point;
+            if (e.LeftButton == MouseButtonState.Pressed &&
+                (Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
+                    Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance))
+            {
+                var lb = sender as ListBox;
+                var lbi = FindVisualParent<ListBoxItem>(((DependencyObject)e.OriginalSource));
+                if (lbi != null)
+                {
+                    DragDrop.DoDragDrop(lbi, lbi.DataContext, DragDropEffects.Move);
+                }
+            }
+        }
+        private void ListBoxItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            _dragStartPoint = e.GetPosition(null);
+        }
+
+        private void ListBoxItem_Drop(object sender, DragEventArgs e)
+        {
+            if (sender is ListBoxItem)
+            {
+                var source = e.Data.GetData(typeof(WinInterface)) as WinInterface;
+                var target = ((ListBoxItem)(sender)).DataContext as WinInterface;
+
+                int sourceIndex = listNotAssing.Items.IndexOf(source);
+                int targetIndex = listNotAssing.Items.IndexOf(target);
+
+                Move(source, sourceIndex, targetIndex);
+            }
+        }
+
         private WinInterface GetSelectedItf()
         {
             return (listNotAssing.SelectedItem as WinInterface);
@@ -71,93 +138,37 @@ namespace WOM
 
         private Point _dragStartPoint;
 
-            private T FindVisualParent<T>(DependencyObject child)
-                where T : DependencyObject
+        private T FindVisualParent<T>(DependencyObject child)
+            where T : DependencyObject
+        {
+            var parentObject = VisualTreeHelper.GetParent(child);
+            if (parentObject == null)
+                return null;
+            T parent = parentObject as T;
+            if (parent != null)
+                return parent;
+            return FindVisualParent<T>(parentObject);
+        }
+
+        private void Move(WinInterface source, int sourceIndex, int targetIndex)
+        {
+            if (sourceIndex < targetIndex)
             {
-                var parentObject = VisualTreeHelper.GetParent(child);
-                if (parentObject == null)
-                    return null;
-                T parent = parentObject as T;
-                if (parent != null)
-                    return parent;
-                return FindVisualParent<T>(parentObject);
+                wom.ListNotAssing.Insert(targetIndex + 1, source);
+                wom.ListNotAssing.RemoveAt(sourceIndex);
             }
-
-            private void Init_ListBox()
+            else
             {
-
-                listNotAssing.ItemsSource = wom.listWinItf;
-
-                listNotAssing.PreviewMouseMove += ListBox_PreviewMouseMove;
-
-                var style = new Style(typeof(ListBoxItem));
-                style.Setters.Add(new Setter(ListBoxItem.AllowDropProperty, true));
-                style.Setters.Add(
-                    new EventSetter(
-                        ListBoxItem.PreviewMouseLeftButtonDownEvent,
-                        new MouseButtonEventHandler(ListBoxItem_PreviewMouseLeftButtonDown)));
-                style.Setters.Add(
-                        new EventSetter(
-                            ListBoxItem.DropEvent,
-                            new DragEventHandler(ListBoxItem_Drop)));
-                listNotAssing.ItemContainerStyle = style;
-                listNotAssing.Items.Refresh();
-            }
-
-
-            private void ListBox_PreviewMouseMove(object sender, MouseEventArgs e)
-            {
-                Point point = e.GetPosition(null);
-                Vector diff = _dragStartPoint - point;
-                if (e.LeftButton == MouseButtonState.Pressed &&
-                    (Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
-                        Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance))
+                int removeIndex = sourceIndex + 1;
+                if (wom.ListNotAssing.Count + 1 > removeIndex)
                 {
-                    var lb = sender as ListBox;
-                    var lbi = FindVisualParent<ListBoxItem>(((DependencyObject)e.OriginalSource));
-                    if (lbi != null)
-                    {
-                        DragDrop.DoDragDrop(lbi, lbi.DataContext, DragDropEffects.Move);
-                    }
+                    wom.ListNotAssing.Insert(targetIndex, source);
+                    wom.ListNotAssing.RemoveAt(removeIndex);
                 }
             }
-            private void ListBoxItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-            {
-                _dragStartPoint = e.GetPosition(null);
-            }
+        }
 
-            private void ListBoxItem_Drop(object sender, DragEventArgs e)
-            {
-                if (sender is ListBoxItem)
-                {
-                    var source = e.Data.GetData(typeof(WinInterface)) as WinInterface;
-                    var target = ((ListBoxItem)(sender)).DataContext as WinInterface;
-
-                    int sourceIndex = listNotAssing.Items.IndexOf(source);
-                    int targetIndex = listNotAssing.Items.IndexOf(target);
-
-                    Move(source, sourceIndex, targetIndex);
-                }
-            }
-
-            private void Move(WinInterface source, int sourceIndex, int targetIndex)
-            {
-                if (sourceIndex < targetIndex)
-                {
-                    wom.listWinItf.Insert(targetIndex + 1, source);
-                    wom.listWinItf.RemoveAt(sourceIndex);
-                }
-                else
-                {
-                    int removeIndex = sourceIndex + 1;
-                    if (wom.listWinItf.Count + 1 > removeIndex)
-                    {
-                        wom.listWinItf.Insert(targetIndex, source);
-                        wom.listWinItf.RemoveAt(removeIndex);
-                    }
-                }
-            }
-            #endregion  
+        #endregion  
 
         public void CloseButton(object sender, RoutedEventArgs e)
         {

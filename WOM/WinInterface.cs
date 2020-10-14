@@ -36,6 +36,8 @@ namespace WOM
             this.isIcon = true;
         }
 
+        public WinInterface() { }
+
         public void Move(Direction dir, int nPixel)
         {
             Rect rect;

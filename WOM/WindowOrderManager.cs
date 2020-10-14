@@ -19,19 +19,28 @@ namespace WOM
         public WindowOrderManager()
         {
             this.config = Config.getConfig();
-            initListWinItf();
+            InitList();
+            GetRunningItfs();
         }
 
-        private void initListWinItf()
+        private void InitList()
         {
-            if (listWinItf == null)
-                listWinItf = new ObservableCollection<WinInterface>();
+            ListNotAssing = new ObservableCollection<WinInterface>();
+            ListBackground = new ObservableCollection<WinInterface>();
+            ListBottom = new ObservableCollection<WinInterface>();
+            ListForeground = new ObservableCollection<WinInterface>();
+        }
 
-            listWinItf.Clear();
+        private void GetRunningItfs()
+        {
+            if (ListNotAssing == null)
+                ListNotAssing = new ObservableCollection<WinInterface>();
+
+            ListNotAssing.Clear();
 
             foreach (WinInterface window in DesktopHandler.GetAllWindows())
             {
-                listWinItf.Add(window);
+                ListNotAssing.Add(window);
             }
 
         }
@@ -47,7 +56,7 @@ namespace WOM
         {
             IntPtr wallpaperHandler = DesktopHandler.GetDesktopHandler();
 
-            foreach (WinInterface itf in listWinItf)
+            foreach (WinInterface itf in ListNotAssing)
             {
                 //todo: Complet
                 if (itf.id == 0)
@@ -61,6 +70,8 @@ namespace WOM
                 W32.SetParent(itf.handler, wallpaperHandler);
 
                 W32.MoveWindow(itf.handler, rct.left, rct.top, rct.right - rct.left, rct.bottom - rct.top, true);
+
+                break;
             }
             SaveConfig();
         }
@@ -88,8 +99,12 @@ namespace WOM
 
         }
 
-        public IList<Window> overlays { get; set; }
-        public IList<WinInterface> listWinItf { get; set; }
+        public IList<Window> Overlays { get; set; }
+        public IList<WinInterface> ListNotAssing { get; set; }
+        public IList<WinInterface> ListBackground { get; set; }
+        public IList<WinInterface> ListBottom { get; set; }
+        public IList<WinInterface> ListForeground { get; set; }
+
         public Config config { get; private set; }
         
     }

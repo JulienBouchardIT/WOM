@@ -36,7 +36,6 @@ namespace WOM
         {
             if (e.Key == Key.Enter || e.Key == Key.Escape)
             {
-                wom.CloseOverlays();
                 this.Close();
             }
             var key = e.Key;
