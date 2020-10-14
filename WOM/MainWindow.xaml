@@ -21,7 +21,7 @@
             <RowDefinition Height="75"/>
         </Grid.RowDefinitions>
         
-        <Border Grid.Row="0" Background="White" BorderThickness="0,0,0,2" BorderBrush="LightGray">
+        <Border Grid.Row="0" Background="White" Margin="0,-1,0,0" BorderThickness="0,0,0,2" BorderBrush="LightGray">
             <Grid MouseDown="Window_Drag">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="30"/>

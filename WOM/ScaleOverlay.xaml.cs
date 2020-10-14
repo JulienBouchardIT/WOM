@@ -19,7 +19,7 @@ namespace WOM
     /// </summary>
     public partial class ScaleOverlay : Window
     {
-        public ScaleOverlay(WinInterface itf)
+        public ScaleOverlay(WindowOrderManager wom, WinInterface itf)
         {
             this.itf = itf;
             InitializeComponent();
@@ -37,6 +37,7 @@ namespace WOM
             if (e.Key == Key.Enter || e.Key == Key.Escape)
             {
                 this.Close();
+                wom.CloseOverlays();
             }
             var key = e.Key;
 
@@ -61,5 +62,6 @@ namespace WOM
         }
 
         private WinInterface itf { get; set; }
+        private WindowOrderManager wom { get; set; }
     }
 }

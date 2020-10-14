@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WOM
 {
-    class Config
+    public class Config
     {
         private static Config config = new Config();
 

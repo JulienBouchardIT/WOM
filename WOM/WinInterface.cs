@@ -51,6 +51,7 @@ namespace WOM
             W32.GetWindowRect(handler, out rect);
             int w = rect.right - rect.left;
             int h = rect.bottom - rect.top;
+            Console.WriteLine("b" + rect.left + " " + rect.top + " " + w + " " + h);
             switch (dir)
             {
                 case Direction.up:
@@ -72,7 +73,7 @@ namespace WOM
                 default:
                     break;
             }
-
+            Console.WriteLine("a"+rect.left+" "+rect.top+" "+w+" "+h);
             W32.MoveWindow(handler, rect.left, rect.top, w, h, true);
         }
 

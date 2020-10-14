@@ -6,11 +6,12 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms.VisualStyles;
 
 namespace WOM
 {
-    class WindowOrderManager
+    public class WindowOrderManager
     {
         private static WindowOrderManager wom = new WindowOrderManager();
         public static WindowOrderManager getWOM() { return wom; }
@@ -36,14 +37,14 @@ namespace WOM
 
         }
 
-        private void saveConfig()
+        private void SaveConfig()
         {
             //todo: Modif config obj according to 
 
             config.saveConfig();
         }
 
-        public void apply()
+        public void Apply()
         {
             IntPtr wallpaperHandler = DesktopHandler.GetDesktopHandler();
 
@@ -62,10 +63,33 @@ namespace WOM
 
                 W32.MoveWindow(itf.handler, rct.left, rct.top, rct.right - rct.left, rct.bottom - rct.top, true);
             }
-            saveConfig();
+            SaveConfig();
         }
 
+        public void CloseOverlays()
+        {
+            //todo:
+        }
 
+        public void Scale(WinInterface itf)
+        {
+            ScaleOverlay overlay = new ScaleOverlay(this, itf);
+            W32.SetForegroundWindow(itf.handler);
+
+            overlay.ShowDialog();
+
+        }
+
+        public void Move(WinInterface itf)
+        {
+            MoveOverlay overlay = new MoveOverlay(this, itf);
+            W32.SetForegroundWindow(itf.handler);
+
+            overlay.ShowDialog();
+
+        }
+
+        public IList<Window> overlays { get; set; }
         public IList<WinInterface> listWinItf { get; set; }
         public Config config { get; private set; }
         

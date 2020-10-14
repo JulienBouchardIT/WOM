@@ -19,8 +19,9 @@ namespace WOM
     /// </summary>
     public partial class MoveOverlay : Window
     {
-        public MoveOverlay(WinInterface itf)
+        public MoveOverlay(WindowOrderManager wom, WinInterface itf)
         {
+            this.wom = wom;
             this.itf = itf;
             InitializeComponent();
             this.Topmost = true;
@@ -36,6 +37,7 @@ namespace WOM
         {
             if (e.Key == Key.Enter || e.Key == Key.Escape)
             {
+                wom.CloseOverlays();
                 this.Close();
             }
             var key = e.Key;
@@ -60,6 +62,7 @@ namespace WOM
             //W32.SetForegroundWindow(itf.handler);
         }
 
+        private WindowOrderManager wom { get; set; }
         private WinInterface itf { get; set; }
     }
 }

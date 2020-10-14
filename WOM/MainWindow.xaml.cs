@@ -22,10 +22,10 @@ namespace WOM
     {
         private const string WIKI_URL = "https://github.com/JulienBouchardIT/WOM/wiki";
         private const string DESKTOP_ICONS = "DESKTOP ICONS";
-        private WindowOrderManager wom = WindowOrderManager.getWOM();
 
         public MainWindow()
         {
+            this.wom = WindowOrderManager.getWOM();
             InitializeComponent();
             Init_ListBox();
             Init_Tasktray();
@@ -178,7 +178,7 @@ namespace WOM
 
         public void Apply(object sender, RoutedEventArgs e)
         {
-            wom.apply();
+            wom.Apply();
 
             this.Visibility = Visibility.Hidden;
             tasktrayProcess.Visible = true;
@@ -202,14 +202,9 @@ namespace WOM
             if (GetSelectedItf() != null)
             {
                 this.Visibility = Visibility.Hidden;
-                ScaleOverlay overlay = new ScaleOverlay(GetSelectedItf());
-                W32.SetForegroundWindow(GetSelectedItf().handler);
-
-                overlay.ShowDialog();
-
+                wom.Scale(GetSelectedItf());
                 this.Visibility = Visibility.Visible;
             }
-            //todo show exception
         }
 
         public void Move(object sender, RoutedEventArgs e)
@@ -217,11 +212,7 @@ namespace WOM
             if (GetSelectedItf() != null)
             {
                 this.Visibility = Visibility.Hidden;
-                MoveOverlay overlay = new MoveOverlay(GetSelectedItf());
-                W32.SetForegroundWindow(GetSelectedItf().handler);
-
-                overlay.ShowDialog();
-
+                wom.Move(GetSelectedItf());
                 this.Visibility = Visibility.Visible;
             }
         }
@@ -244,6 +235,8 @@ namespace WOM
         {
 
         }
+
+        private WindowOrderManager wom { get; set; }
 
     }
 }
