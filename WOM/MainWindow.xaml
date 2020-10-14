@@ -21,7 +21,7 @@
             <RowDefinition Height="75"/>
         </Grid.RowDefinitions>
         
-        <Border Grid.Row="0" Background="White" BorderThickness="0,0,0,2" BorderBrush="LightGray" CornerRadius="8,8,0,0">
+        <Border Grid.Row="0" Background="White" BorderThickness="0,0,0,2" BorderBrush="LightGray">
             <Grid MouseDown="Window_Drag">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="30"/>
@@ -66,11 +66,6 @@
                     <Image Width="20" Height="20" Source="resource/black/HelpBlack.png" />
                 </Button>
                 <Button Grid.Column="5" BorderThickness="0" Background="Transparent" Click="CloseButton">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="0,8,0,0"/>
-                        </Style>
-                    </Button.Resources>
                     <Image Width="20" Height="20" Source="resource/black/ExitBlack.png"/>
                 </Button>
             </Grid>
@@ -260,11 +255,6 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Height="75" BorderBrush="White" BorderThickness="0" Click="Apply" ClickMode="Press" Foreground="White" FontSize="20" Background="#FF1515" FontWeight="Bold">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="0,0,0,8"/>
-                    </Style>
-                </Button.Resources>
                 <Button.ToolTip>
                     <ToolTip>
                         <DockPanel>
@@ -314,13 +304,8 @@
                 </Button.ToolTip>
                 <Image Width="60" Height="60" Source="resource/white/KillWhitev1.png" />
             </Button>
-            <Button Grid.Column="5" Height="75" BorderThickness="0" BorderBrush="White" Click="Apply" ClickMode="Press" Foreground="White" FontSize="55" Background="#01A500" FontWeight="Bold">APPLY
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="0,0,8,0"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
+            
+            <Button Grid.Column="5" Height="75" BorderThickness="0" BorderBrush="White" Click="Apply" ClickMode="Press" Foreground="White" FontSize="50" Margin="0" Padding="0" Background="#01A500" FontWeight="Bold">APPLY</Button>
         </Grid>
 
     </Grid>
