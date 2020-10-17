@@ -121,7 +121,7 @@ namespace WOM
         private void ListBox_Drop(object sender, DragEventArgs e)
         {
             Console.WriteLine("List");
-            if (sender is ListBox && !IgnoreEvent)
+            if (sender is ListBox)
             {
                 WindowOrderManager wom = WindowOrderManager.getWOM();
                 var source = e.Data.GetData(typeof(WinInterface)) as WinInterface;
