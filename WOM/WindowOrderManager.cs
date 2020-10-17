@@ -11,12 +11,16 @@ using System.Windows.Forms.VisualStyles;
 
 namespace WOM
 {
+    /// <summary>
+    /// Singleton
+    /// WindowOrderManager manage all operations regarding the application itself. 
+    /// </summary>
     public class WindowOrderManager
     {
         private static WindowOrderManager wom = new WindowOrderManager();
         public static WindowOrderManager getWOM() { return wom; }
 
-        public WindowOrderManager()
+        private WindowOrderManager()
         {
             this.config = Config.getConfig();
             InitList();
@@ -99,11 +103,55 @@ namespace WOM
 
         }
 
+        #region List manager
+
+        private IList<WinInterface> GetListOfItf(WinInterface itf)
+        {
+            if (ListNotAssing.Contains(itf))
+                return ListNotAssing;
+            if (ListBackground.Contains(itf))
+                return ListBackground;
+            if (ListBottom.Contains(itf))
+                return ListBottom;
+            if (ListForeground.Contains(itf))
+                return ListForeground;
+            return null; //todo: trow error
+        }
+
+        public void MoveItfInList(WinInterface itf, IList<WinInterface> fromList, IList<WinInterface> toList)
+        {
+            fromList.Remove(itf);
+            toList.Add(itf);
+        }
+
+        public void MoveItfBetweenItf(WinInterface sourceItf, WinInterface targetItf)
+        {
+            IList<WinInterface> targetList = GetListOfItf(targetItf);
+            RemoveItfInList(sourceItf);
+            int i = targetList.IndexOf(targetItf);
+            targetList.Insert(i, sourceItf);
+        }
+
+        public void RemoveItfInList(WinInterface itf)
+        {
+            ListNotAssing.Remove(itf);
+            ListBackground.Remove(itf);
+            ListBottom.Remove(itf);
+            ListForeground.Remove(itf);
+        }
+
+        public void AddItfToList(WinInterface itf, IList<WinInterface> aList)
+        {
+            aList.Add(itf);
+        }
+
+        public IList<WinInterface> ListNotAssing { get; private set; }
+        public IList<WinInterface> ListBackground { get; private set; }
+        public IList<WinInterface> ListBottom { get; private set; }
+        public IList<WinInterface> ListForeground { get; private set; }
+
+        #endregion
         public IList<Window> Overlays { get; set; }
-        public IList<WinInterface> ListNotAssing { get; set; }
-        public IList<WinInterface> ListBackground { get; set; }
-        public IList<WinInterface> ListBottom { get; set; }
-        public IList<WinInterface> ListForeground { get; set; }
 
         public Config config { get; private set; }
         

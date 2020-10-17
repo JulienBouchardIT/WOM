@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Diagnostics;
 using System.Globalization;
+using System.Configuration;
 
 namespace WOM
 {
@@ -24,7 +25,6 @@ namespace WOM
 
         public MainWindow()
         {
-            this.wom = WindowOrderManager.getWOM();
             InitializeComponent();
             Init_ListBox();
             Init_Tasktray();
@@ -66,6 +66,7 @@ namespace WOM
 
         private void Init_ListBox()
         {
+            WindowOrderManager wom = WindowOrderManager.getWOM();
             listNotAssing.ItemsSource = wom.ListNotAssing;
             listBackground.ItemsSource = wom.ListBackground;
             listBottom.ItemsSource = wom.ListBottom;
@@ -83,18 +84,70 @@ namespace WOM
             _dragStartPoint = e.GetPosition(null);
         }
 
-        private void ListBox_Drop(object sender, DragEventArgs e)
+        #region Drop event
+
+        /*private bool FirstCall = true;
+        private bool Confirm = false;
+        private static System.Timers.Timer aTimer;
+        private void Drop(object sender, DragEventArgs e)
         {
             if (sender is ListBox)
             {
+                Console.WriteLine("Do ListBox");
+            }
+
+            if (sender is ListBoxItem)
+            {
+                Console.WriteLine("ListBox");
+            }
+
+
+            if (FirstCall && !Confirm)
+            {
+                aTimer = new System.Timers.Timer(2000);
+                aTimer.Elapsed += OnTimedEvent;
+                aTimer.AutoReset = false;
+                aTimer.Enabled = true;
+            }
+        }
+
+        private static void OnTimedEvent(Object source, ElapsedEventArgs e)
+        {
+            Console.WriteLine("The Elapsed event was raised at {0:HH:mm:ss.fff}",
+                              e.SignalTime);
+        }*/
+
+        private bool IgnoreEvent = false;
+        private void ListBox_Drop(object sender, DragEventArgs e)
+        {
+            Console.WriteLine("List");
+            if (sender is ListBox && !IgnoreEvent)
+            {
+                WindowOrderManager wom = WindowOrderManager.getWOM();
                 var source = e.Data.GetData(typeof(WinInterface)) as WinInterface;
                 var target = ((ListBox)(sender)) as ListBox;
 
+                wom.RemoveItfInList(source);
                 ((IList<WinInterface>)target.ItemsSource).Add(source); //Add elem to destination
-                //todo: remove from source
+                IgnoreEvent = false;
 
             }
         }
+
+        private void ListBoxItem_Drop(object sender, DragEventArgs e)
+        {
+            Console.WriteLine("Item");    
+            if (sender is ListBoxItem)
+            {
+                this.IgnoreEvent = true;
+                var source = e.Data.GetData(typeof(WinInterface)) as WinInterface;
+                var target = ((ListBoxItem)(sender)).DataContext as WinInterface;
+
+                WindowOrderManager.getWOM().MoveItfBetweenItf(source, target);
+            }
+        }
+
+        #endregion
 
         private void List_PreviewMouseMove(object sender, MouseEventArgs e)
         {
@@ -117,20 +170,6 @@ namespace WOM
             _dragStartPoint = e.GetPosition(null);
         }
 
-        private void ListBoxItem_Drop(object sender, DragEventArgs e)
-        {
-            if (sender is ListBoxItem)
-            {
-                var source = e.Data.GetData(typeof(WinInterface)) as WinInterface;
-                var target = ((ListBoxItem)(sender)).DataContext as WinInterface;
-
-                int sourceIndex = listNotAssing.Items.IndexOf(source);
-                int targetIndex = listNotAssing.Items.IndexOf(target);
-
-                Move(source, sourceIndex, targetIndex);
-            }
-        }
-
         private WinInterface GetSelectedItf()
         {
             return (listNotAssing.SelectedItem as WinInterface);
@@ -148,24 +187,6 @@ namespace WOM
             if (parent != null)
                 return parent;
             return FindVisualParent<T>(parentObject);
-        }
-
-        private void Move(WinInterface source, int sourceIndex, int targetIndex)
-        {
-            if (sourceIndex < targetIndex)
-            {
-                wom.ListNotAssing.Insert(targetIndex + 1, source);
-                wom.ListNotAssing.RemoveAt(sourceIndex);
-            }
-            else
-            {
-                int removeIndex = sourceIndex + 1;
-                if (wom.ListNotAssing.Count + 1 > removeIndex)
-                {
-                    wom.ListNotAssing.Insert(targetIndex, source);
-                    wom.ListNotAssing.RemoveAt(removeIndex);
-                }
-            }
         }
 
         #endregion  
@@ -188,6 +209,7 @@ namespace WOM
 
         public void Apply(object sender, RoutedEventArgs e)
         {
+            WindowOrderManager wom = WindowOrderManager.getWOM();
             wom.Apply();
 
             this.Visibility = Visibility.Hidden;
@@ -209,6 +231,7 @@ namespace WOM
 
         public void Scale(object sender, RoutedEventArgs e)
         {
+            WindowOrderManager wom = WindowOrderManager.getWOM();
             if (GetSelectedItf() != null)
             {
                 this.Visibility = Visibility.Hidden;
@@ -219,6 +242,7 @@ namespace WOM
 
         public void Move(object sender, RoutedEventArgs e)
         {
+            WindowOrderManager wom = WindowOrderManager.getWOM();
             if (GetSelectedItf() != null)
             {
                 this.Visibility = Visibility.Hidden;
@@ -246,7 +270,6 @@ namespace WOM
 
         }
 
-        private WindowOrderManager wom { get; set; }
 
     }
 }

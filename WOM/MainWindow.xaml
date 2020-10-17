@@ -131,7 +131,7 @@
 
                 <StackPanel Grid.Row="0">
                     <Label HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="15">Over wallpaper</Label>
-                    <ListBox AllowDrop="true" x:Name="listBackground" Height="95" Width="295" BorderThickness="0" ItemsSource="{Binding}">
+                    <ListBox AllowDrop="true" x:Name="listBackground" MinHeight="50" Width="295" BorderThickness="0" ItemsSource="{Binding}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -169,7 +169,7 @@
 
                 <StackPanel Grid.Row="2">
                     <Label HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="15">Over icon</Label>
-                    <ListBox AllowDrop="True" x:Name="listBottom" Height="95" Width="295" BorderThickness="0" ItemsSource="{Binding}">
+                    <ListBox AllowDrop="True" x:Name="listBottom" MinHeight="50" Width="295" BorderThickness="0" ItemsSource="{Binding}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -208,7 +208,7 @@
 
                 <StackPanel Grid.Row="4">
                     <Label HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="15">Over everything</Label>
-                    <ListBox AllowDrop="True" x:Name="listForeground" Height="95" Width="295" BorderThickness="0" ItemsSource="{Binding}">
+                    <ListBox AllowDrop="True" x:Name="listForeground" MinHeight="50" Width="295" BorderThickness="0" ItemsSource="{Binding}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
